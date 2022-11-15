@@ -74,7 +74,7 @@ export default class Uploader {
 				},
 			};
 
-			onPreview(this.config.uploader.addTokenToURL(response.file.fileURL));
+			onPreview(response.file.fileURL);
 			this.onUpload(response);
 		});
 	}

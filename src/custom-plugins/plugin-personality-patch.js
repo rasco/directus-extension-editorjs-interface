@@ -30,7 +30,7 @@ export default class extends Personality {
 	}
 
 	setFullImageSource(image) {
-		const imageUrlWithToken = this.uploader.config.uploader.addTokenToURL(image) + '&key=system-medium-cover';
+		const imageUrlWithToken = image + '&key=system-medium-cover';
 		this.nodes.photo.style.background = `url('${imageUrlWithToken}') center center / cover no-repeat`;
 	}
 
