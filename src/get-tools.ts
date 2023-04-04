@@ -20,6 +20,7 @@ import ListTool from 'editorjs-list';
 import ImageTool from './custom-plugins/plugin-image-patch.js';
 import AttachesTool from './custom-plugins/plugin-attaches-patch.js';
 import PersonalityTool from './custom-plugins/plugin-personality-patch.js';
+import SimpleShortcode from './custom-plugins/simple-shortcode.js';
 
 export type UploaderConfig = {
 	addTokenToURL: (url: string, token: string) => string;
@@ -30,10 +31,13 @@ export type UploaderConfig = {
 	t: Record<string, string>;
 };
 
+
+
 export default function getTools(
 	uploaderConfig: UploaderConfig,
 	selection: Array<string>,
-	haveFilesAccess: boolean
+	haveFilesAccess: boolean,
+	allowed_shortcodes: Array<string>
 ): Record<string, object> {
 	const tools: Record<string, any> = {};
 	const fileRequiresTools = ['attaches', 'personality', 'image'];
@@ -43,6 +47,10 @@ export default function getTools(
 			class: HeaderTool,
 			shortcut: 'CMD+SHIFT+H',
 			inlineToolbar: true,
+			config: {
+				levels: [3, 4, 5, 6],
+				defaultLevel: 3
+			}
 		},
 		list: {
 			class: ListTool,
@@ -128,6 +136,13 @@ export default function getTools(
 				uploader: uploaderConfig,
 			},
 		},
+		simpleshortcode: {
+			class: SimpleShortcode,
+			inlineToolbar: true,
+			config: {
+				allowed_shortcodes
+			}
+		},
 		alignmentTune: {
 			class: AlignmentTuneTool,
 		},
@@ -140,6 +155,8 @@ export default function getTools(
 			tools[toolName] = defaults[toolName];
 		}
 	}
+
+	// console.log(allowed_shortcodes)
 
 	if ('alignmentTune' in tools) {
 		if ('paragraph' in tools) {

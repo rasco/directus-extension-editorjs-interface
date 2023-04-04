@@ -48,6 +48,7 @@ const props = withDefaults(
 		bordered?: boolean;
 		placeholder?: string;
 		tools: string[];
+		allowed_shortcodes: string[];
 		folder?: string;
 		font: 'sans-serif' | 'monospace' | 'serif';
 	}>(),
@@ -90,7 +91,8 @@ const tools = getTools(
 		},
 	},
 	props.tools,
-	haveFilesAccess
+	haveFilesAccess,
+	props.allowed_shortcodes
 );
 
 onMounted(() => {

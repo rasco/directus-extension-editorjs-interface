@@ -146,12 +146,40 @@ export default defineInterface({
 							text: 'Personality',
 						},
 						{
+							value: 'simpleshortcode',
+							text: 'Simple Shortcode',
+						},
+						{
 							value: 'raw',
 							text: 'Raw HTML',
 						},
 					],
 				},
 			},
+		},
+		{
+			field: 'allowed_shortcodes',
+			name: 'Allowed Shortcodes',
+			type: 'json',
+			schema: {
+				default_value: [],
+			},
+			meta: {
+				width: 'half',
+				interface: 'select-multiple-dropdown',
+				options: {
+					choices: [
+						{
+							value: 'products',
+							text: 'Products',
+						},
+						{
+							value: 'brand_attributes',
+							text: 'Brand Attributes',
+						},
+					]
+				}
+			}
 		},
 		{
 			field: 'bordered',
