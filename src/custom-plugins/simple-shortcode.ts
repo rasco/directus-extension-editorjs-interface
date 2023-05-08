@@ -73,6 +73,6 @@ export default class SimpleShortcode {
         return Object.assign(this.data, {
             shortcode: $select?.value || '',
             options: $input?.value || '',
-        }
+        })
     }
 }
